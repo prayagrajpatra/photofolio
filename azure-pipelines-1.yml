@@ -1,0 +1,23 @@
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.x'
+    addToPath: true
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDirectory: '$(Build.SourcesDirectory)'
+
+- task: Npm@1
+  inputs:
+    command: 'build'
+    workingDirectory: '$(Build.SourcesDirectory)'
+
+- task: Npm@1
+  inputs:
+    command: 'test'
+    workingDirectory: '$(Build.SourcesDirectory)'
